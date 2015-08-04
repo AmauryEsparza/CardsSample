@@ -108,9 +108,17 @@ public class PrincipalMenu extends Fragment {
         mListener = null;
     }
 
+    /**
+     * @return the number of columns depending portrait or landscape
+     * orientation
+     */
     private int getOrientationColumns(){
         return (getResources().getConfiguration().orientation == getResources().getConfiguration().ORIENTATION_PORTRAIT) ? 1 : 2;
     }
+
+    /**
+     * hardcoded list
+     */
     private List<ContactInfo> createContactsList(int size){
         List<ContactInfo> result = new ArrayList<ContactInfo>();
         for (int i=1; i <= size; i++) {
