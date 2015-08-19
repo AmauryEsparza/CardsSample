@@ -46,6 +46,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
+        // TODO: Modify the TextView names
         protected TextView vName;
         protected TextView vSurname;
         protected TextView vEmail;

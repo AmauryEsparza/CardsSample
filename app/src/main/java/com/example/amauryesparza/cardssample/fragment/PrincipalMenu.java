@@ -117,6 +117,7 @@ public class PrincipalMenu extends Fragment {
     }
 
     /**
+     * TODO: Remove in production code
      * hardcoded list
      */
     private List<ContactInfo> createContactsList(int size){
