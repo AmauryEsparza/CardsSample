@@ -14,14 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.amauryesparza.cardssample.R;
-import com.example.amauryesparza.cardssample.adapter.ContactAdapter;
+import com.example.amauryesparza.cardssample.adapter.BarCardAdapter;
 import com.example.amauryesparza.cardssample.communicator.IOnFragmentInteractionListener;
+import com.example.amauryesparza.cardssample.communicator.IOnViewHolderEvent;
 import com.example.amauryesparza.cardssample.model.ContactInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrincipalMenu extends Fragment {
+public class PrincipalMenu extends Fragment implements IOnViewHolderEvent{
 
     /**
      * Callback object for Activity communication
@@ -94,11 +95,11 @@ public class PrincipalMenu extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         RecyclerView mRecyclerContainer = (RecyclerView) view.findViewById(R.id.recycler_container);
-        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(getOrientationColumns(), 0);
+        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, 0);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerContainer.setLayoutManager(mLayoutManager);
 
-        ContactAdapter adapter = new ContactAdapter(createContactsList(30));
+        BarCardAdapter adapter = new BarCardAdapter(createContactsList(30), this);
         mRecyclerContainer.setAdapter(adapter);
     }
 
@@ -111,10 +112,22 @@ public class PrincipalMenu extends Fragment {
     /**
      * @return the number of columns depending portrait or landscape
      * orientation
+     * TODO: Remove if doesn't necesary
+     *
      */
     private int getOrientationColumns(){
         return (getResources().getConfiguration().orientation == getResources().getConfiguration().ORIENTATION_PORTRAIT) ? 1 : 2;
     }
+
+    /**
+     * Manage the Click Listeners from the ViewHolder
+     *
+     */
+    public void onClick(View v, int position){
+        Toast.makeText(getActivity(), "Click on card " + position, Toast.LENGTH_SHORT).show();
+    }
+
+
 
     /**
      * TODO: Remove in production code

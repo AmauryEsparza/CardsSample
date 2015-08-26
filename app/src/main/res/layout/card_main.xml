@@ -10,6 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/image_bar"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
+            />
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -18,15 +26,9 @@
             android:text="Bar 1"
             android:gravity="center_vertical"
             android:textColor="@android:color/white"
-            android:textSize="16sp"/>
-        <ImageView
-            android:id="@+id/image_bar"
-            android:layout_width="250dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
-            android:layout_below="@id/title"/>
+            android:textSize="16sp"
+            android:layout_below="@id/image_bar"/>
+
         <TextView
             android:id="@+id/lblAddress"
             android:layout_width="wrap_content"
@@ -36,7 +38,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:layout_below="@id/title"
-            android:layout_toEndOf="@id/image_bar"/>
+            />
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
@@ -56,8 +58,7 @@
             android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_below="@id/txtName"
-            android:layout_toEndOf="@id/image_bar"/>
+            android:layout_below="@id/lblAddress"/>
         <TextView
             android:id="@+id/txtSurname"
             android:layout_width="wrap_content"
@@ -66,7 +67,6 @@
             android:gravity="start"
             android:textSize="12sp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_below="@id/txtName"
             android:layout_toEndOf="@id/lblPhone"/>
@@ -77,9 +77,9 @@
             android:text="@string/lblHappyHour"
             android:textSize="12sp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_below="@id/txtSurname"
-            android:layout_toEndOf="@id/image_bar"/>
+            android:layout_below="@id/lblPhone"/>
         <TextView
             android:id="@+id/txtEmail"
             android:layout_width="wrap_content"
@@ -87,6 +87,7 @@
             android:text="Email"
             android:textSize="12sp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_below="@id/txtSurname"
             android:layout_toEndOf="@id/lblHappyHour"/>
