@@ -1,16 +1,23 @@
 package com.example.amauryesparza.cardssample.fragment;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.app.FragmentTransaction;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amauryesparza.cardssample.R;
@@ -124,10 +131,37 @@ public class PrincipalMenu extends Fragment implements IOnViewHolderEvent{
      *
      */
     public void onClick(View v, int position){
-        Toast.makeText(getActivity(), "Click on card " + position, Toast.LENGTH_SHORT).show();
+        //TODO: Verify the SDK support, the below only API 21 supported
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_transform));
+            this.setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_bottom));
+
+            ImageView image = (ImageView) v.findViewById(R.id.image_bar);
+            TextView title = (TextView) v.findViewById(R.id.title);
+            Fragment detailedBarFragment = new DetailedBar();
+            //Enter transition elements
+            detailedBarFragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_transform));
+            //detailedBarFragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.slide_top));
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TITLE", title.getText().toString());
+            bundle.putParcelable("IMAGE", ((BitmapDrawable) image.getDrawable()).getBitmap());
+            detailedBarFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction()
+                    .replace(R.id.container, detailedBarFragment)
+                    .addToBackStack(null)
+                    .addSharedElement(image, image.getTransitionName())
+                    .addSharedElement(title, title.getTransitionName());
+
+            transaction.commit();
+
+            //Toast.makeText(getActivity(), "Click on card " + position, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getActivity(), "Shared elements doesn't support below Lollipop", Toast.LENGTH_SHORT).show();
+        }
+
     }
-
-
 
     /**
      * TODO: Remove in production code

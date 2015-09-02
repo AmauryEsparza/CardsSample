@@ -47,7 +47,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
                 cardListener.onClick(v, i);
             }
         });
-
     }
 
     @Override
@@ -55,7 +54,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.card_main, viewGroup, false);
-
         return new BarViewHolder(itemView);
     }
 
@@ -66,7 +64,6 @@ public class BarCardAdapter extends RecyclerView.Adapter<BarCardAdapter.BarViewH
         protected TextView vEmail;
         protected TextView vTitle;
         protected CardView vCard;
-
 
         public BarViewHolder(View v) {
             super(v);

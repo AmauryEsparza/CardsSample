@@ -2,9 +2,11 @@ package com.example.amauryesparza.cardssample;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.example.amauryesparza.cardssample.communicator.IOnFragmentInteractionListener;
@@ -17,8 +19,12 @@ public class MainActivity extends Activity implements IOnFragmentInteractionList
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //Add the corresponding fragment
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
